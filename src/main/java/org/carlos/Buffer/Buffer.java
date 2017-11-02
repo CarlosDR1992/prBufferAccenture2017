@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Buffer {
-  private Queue<Object> buffer;
+  private Queue<Object> bufferQueue;
   private int capacity;
-  int numberOfPut = 0;
-  int numberOfGet = 0;
+  long numberOfPutOperations = 0;
+  long numberOfGetOperations = 0;
 
   /**
    * Constructor
@@ -16,36 +16,36 @@ public class Buffer {
    */
   public Buffer(int bSize) {
     capacity = bSize;
-    buffer = new LinkedList<Object>();
+    bufferQueue = new LinkedList<Object>();
   }
 
   public void put(Object element) {
-    if (buffer.size() == capacity)
-      System.exit(-1);;
+    if (bufferQueue.size() == capacity)
+      
 
     System.out.println("Element inserted");
 
-    buffer.add(element);
-    numberOfPut++;
+    bufferQueue.add(element);
+    numberOfPutOperations++;
   }
 
-  public Object getObtainValueOfBuffer() throws Exception {
-    if (buffer.isEmpty())
+  public Object getObtainValueOfBuffer() throws BufferException {
+    if (bufferQueue.isEmpty())
       throw new BufferException("Error: Buffer is Empty");
 
-    Object value = buffer.remove();
+    Object value = bufferQueue.remove();
     System.out.println("Element extracted");
 
-    numberOfGet++;
+    numberOfGetOperations++;
     return value;
   }
 
   public int getNumberOfElements() {
-    return buffer.size();
+    return bufferQueue.size();
   }
 
   public int getNumberOfHoles() {
-    return capacity - buffer.size();
+    return capacity - bufferQueue.size();
   }
 
   public int getCapacity() {
@@ -53,6 +53,6 @@ public class Buffer {
   }
 
   public double getNumberOfOperations() {
-    return numberOfPut + numberOfGet;
+    return numberOfGetOperations + numberOfGetOperations;
   }
 }
