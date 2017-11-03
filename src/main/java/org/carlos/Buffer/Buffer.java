@@ -3,8 +3,8 @@ package org.carlos.Buffer;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Buffer {
-  private Queue<Object> bufferQueue;
+public class Buffer<T> {
+  private Queue<T> bufferQueue;
   private int capacity;
   long numberOfPutOperations = 0;
   long numberOfGetOperations = 0;
@@ -16,24 +16,23 @@ public class Buffer {
    */
   public Buffer(int bSize) {
     capacity = bSize;
-    bufferQueue = new LinkedList<Object>();
+    bufferQueue = new LinkedList<T>();
   }
 
-  public void putValueOfBuffer(Object element) {
+  public void putValueOfBuffer(T element) {
     if (bufferQueue.size() == capacity)
       
-
     System.err.println("Element inserted");
 
     bufferQueue.add(element);
     numberOfPutOperations++;
   }
 
-  public Object getObtainValueOfBuffer() throws BufferException {
+  public T getObtainValueOfBuffer() throws BufferException {
     if (bufferQueue.isEmpty())
       throw new BufferException("Error: Buffer is Empty");
 
-    Object value = bufferQueue.remove();
+    T value = bufferQueue.remove();
     System.err.println("Element extracted");
 
     numberOfGetOperations++;
