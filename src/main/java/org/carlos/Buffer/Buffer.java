@@ -19,11 +19,11 @@ public class Buffer {
     bufferQueue = new LinkedList<Object>();
   }
 
-  public void put(Object element) {
+  public void putValueOfBuffer(Object element) {
     if (bufferQueue.size() == capacity)
       
 
-    System.out.println("Element inserted");
+    System.err.println("Element inserted");
 
     bufferQueue.add(element);
     numberOfPutOperations++;
@@ -34,7 +34,7 @@ public class Buffer {
       throw new BufferException("Error: Buffer is Empty");
 
     Object value = bufferQueue.remove();
-    System.out.println("Element extracted");
+    System.err.println("Element extracted");
 
     numberOfGetOperations++;
     return value;
